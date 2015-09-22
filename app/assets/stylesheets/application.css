@@ -32,3 +32,8 @@ div.title-background {
 div.short-version {
 	margin-top: 10%;
 }
+
+div.map-container {
+	width: 500px;
+	height: 500px;
+}
