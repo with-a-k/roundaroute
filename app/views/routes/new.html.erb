@@ -1,0 +1,13 @@
+<div class="row">
+	<div class="large-5 large-offset-1 columns">
+		<%= form_for @route, url: {action: "create"} do |f| %>
+			<%= f.text_field :name %>
+			<%= f.text_field :origin %>
+			<%= f.text_field :distance %>
+			<%= f.submit %>
+		<% end %>
+	</div>
+	<div class="large-5 end columns">
+		<div id="show-map" class="map-container">[a WIP map will go here.]</div>
+	</div>
+</div>

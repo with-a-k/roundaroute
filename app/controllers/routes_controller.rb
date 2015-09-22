@@ -4,7 +4,7 @@ class RoutesController < ApplicationController
   end
 
   def new
-
+    @route = Route.new
   end
 
   def create

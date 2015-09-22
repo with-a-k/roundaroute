@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="large-6 large-offset-1 columns">
+	<div class="large-5 large-offset-1 columns">
 		<h3>Route Name</h3>
 		<h4>Route Origin:</h4>
 		<p>[some geocoding stuff]</p>
@@ -8,7 +8,25 @@
 		<h4>Estimated Time:</h4>
 		<p>[walking time/running time/cycling time]</p>
 	</div>
-	<div class="large-4 large-offset-1 columns">
-		<div id="show-map"></div>
+	<div class="large-5 end columns">
+		<div id="show-map" class="map-container"></div>
 	</div>
 </div>
+
+<script type="text/javascript">
+  function gmap_show() {
+
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'show-map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": 39.7392,    
+        "lng": -104.9903,
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(12);
+  });
+}
+</script>
