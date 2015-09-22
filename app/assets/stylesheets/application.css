@@ -34,5 +34,6 @@ div.short-version {
 }
 
 div.map-container {
-	
+	width: 500px;
+	height: 500px;
 }
