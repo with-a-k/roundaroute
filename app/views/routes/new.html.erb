@@ -1,13 +1,37 @@
 <div class="row">
-	<div class="large-5 large-offset-1 columns">
+	<div class="large-5 large-offset-1 columns form-container">
 		<%= form_for @route, url: {action: "create"} do |f| %>
+			<%= f.label(:name) %>
 			<%= f.text_field :name %>
+			<%= f.label(:origin) %>
 			<%= f.text_field :origin %>
+			<%= f.label(:distance) %>
 			<%= f.text_field :distance %>
 			<%= f.submit %>
 		<% end %>
 	</div>
 	<div class="large-5 end columns">
-		<div id="show-map" class="map-container">[a WIP map will go here.]</div>
+		<div id="show-map" class="map-container"></div>
 	</div>
 </div>
+
+<script type="text/javascript">
+  function gmap_show() {
+
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'show-map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": 39.7392,    
+        "lng": -104.9903,
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(12);
+  });
+}
+$(document).ready(function(){
+  gmap_show();
+});
+</script>

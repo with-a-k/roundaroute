@@ -16,8 +16,8 @@
 <script type="text/javascript">
   function gmap_show() {
 
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'show-map'}}, function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'show-map'}}, function(){
     markers = handler.addMarkers([
       {
         "lat": 39.7392,    
@@ -29,4 +29,7 @@
     handler.getMap().setZoom(12);
   });
 }
+$(document).ready(function(){
+  gmap_show();
+});
 </script>

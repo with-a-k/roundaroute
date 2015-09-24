@@ -19,3 +19,11 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+var directionsDisplay = new google.maps.DirectionsRenderer();
+var directionsService = new google.maps.DirectionsService();
+
+function getRoute(origin, distance) {
+	var originMap = new google.maps.LatLng(origin[0], origin[1]);
+	// javascript...
+}
