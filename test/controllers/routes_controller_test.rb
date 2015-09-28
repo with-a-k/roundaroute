@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class RoutesControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "it disallows unauthenticated users" do
+
+  end
 end
