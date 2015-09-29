@@ -2,8 +2,6 @@
 
 one:
   name: MyString
-  password-digest: MyString
 
 two:
   name: MyString
-  password-digest: MyString
