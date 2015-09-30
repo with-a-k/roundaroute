@@ -1,12 +1,15 @@
 <div class="row">
 	<div class="large-5 large-offset-1 columns">
-		<h3>Route Name</h3>
+		<h3><%= @route.name %></h3>
+    <h4>Created by <%= @route.user.name %></h4>
 		<h4>Route Origin:</h4>
-		<p>[some geocoding stuff]</p>
+		<p><%= @route.origin %></p>
 		<h4>Route Length:</h4>
-		<p>[the route's length]</p>
-		<h4>Estimated Time:</h4>
-		<p>[walking time/running time/cycling time]</p>
+		<p><%= @route.distance %></p>
+    <br>
+    <a href="/routes/new" class="button radius">Make a new route</a>
+    <a href="/routes" class="button radius">View all routes</a>
+    <a href="/logout" class="button radius secondary">Log out</a>
 	</div>
 	<div class="large-5 end columns">
 		<div id="show-map" class="map-container"></div>
@@ -14,22 +17,43 @@
 </div>
 
 <script type="text/javascript">
-  function gmap_show() {
+  var showDirections  = new google.maps.DirectionsRenderer();
+  var serveDirections = new google.maps.DirectionsService();
 
+  function get_route() {
+    var origin      = new google.maps.LatLng(<%= @route.origin_latitude %>,<%= @route.origin_longitude %>);
+    var destination = new google.maps.LatLng(<%= @route.origin_latitude %>,<%= @route.origin_longitude %>);
+    var waypoint1   = new google.maps.LatLng(<%= @route.waypoint1_latitude %>,<%= @route.waypoint1_longitude %>);
+    var waypoint2   = new google.maps.LatLng(<%= @route.waypoint2_latitude %>,<%= @route.waypoint2_longitude %>);
+    var request = {
+      origin: origin,
+      destination: destination,
+      waypoints: [
+        {
+          location: waypoint1
+        },
+        {
+          location: waypoint2
+        }
+      ],
+      travelMode: google.maps.TravelMode.WALKING
+    };
+    serveDirections.route(request, function(response, status){
+      if (status == google.maps.DirectionsStatus.OK) {
+        showDirections.setDirections(response);
+      }
+    });
+  }
+
+  function gmap_show() {
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'show-map'}}, function(){
-    markers = handler.addMarkers([
-      {
-        "lat": 39.7392,    
-        "lng": -104.9903,
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(12);
-  });
-}
+      showDirections.setMap(handler.getMap());
+    });
+  }
+
 $(document).ready(function(){
+  get_route();
   gmap_show();
 });
 </script>

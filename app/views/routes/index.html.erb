@@ -1,0 +1,16 @@
+<% cache(cache_key_for(Route)) do %>
+<div class="row">
+	<div class="large-5 large-offset-1 end columns">
+		<% @routes.each do |route| %>
+			<% cache(route) do %>
+				<h3><%= link_to "#{route.name}", route_path(route) %></h3>
+    		<h5>Created by <%= route.user.name %></h4>
+				<p>Route Origin: <%= route.origin %> / Length: <%= route.distance %> meters</p>
+			<% end %>
+		<% end %>
+    <br>
+    <a href="/routes/new" class="button radius">Make a new route</a>
+    <a href="/logout" class="button radius secondary">Log out</a>
+	</div>
+</div>
+<% end %>

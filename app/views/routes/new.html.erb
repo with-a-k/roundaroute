@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="large-5 large-offset-1 columns form-container">
+	<div class="large-5 large-offset-1 end columns form-container">
 		<%= form_for @route, url: {action: "create"} do |f| %>
 			<%= f.label(:name) %>
 			<%= f.text_field :name %>
@@ -9,29 +9,8 @@
 			<%= f.text_field :distance %>
 			<%= f.submit %>
 		<% end %>
-	</div>
-	<div class="large-5 end columns">
-		<div id="show-map" class="map-container"></div>
+		<br>
+		<a href="/routes" class="button radius">View all routes</a>
+		<a href="/logout" class="button radius secondary">Log out</a>
 	</div>
 </div>
-
-<script type="text/javascript">
-  function gmap_show() {
-
-    handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'show-map'}}, function(){
-    markers = handler.addMarkers([
-      {
-        "lat": 39.7392,    
-        "lng": -104.9903,
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    handler.getMap().setZoom(12);
-  });
-}
-$(document).ready(function(){
-  gmap_show();
-});
-</script>
