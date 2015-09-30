@@ -37,6 +37,7 @@ gem 'simplecov'
 gem 'figaro'
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'skylight'
 
 
 group :development, :test do
